@@ -1,4 +1,4 @@
-#Day 3 Project: Rock Paper Scissors.
+#Day 4 Project: Rock Paper Scissors.
 import random 
 
 #ASCII Arts
@@ -44,19 +44,19 @@ computer_choice = computer_options[random.randint(0, 2)]
 
 # Both Choices
 if player_choice == "rock":
-    print(f"You choose {player_choice}\n{rock_ascii}\n")
+    print(f"You chose {player_choice}\n{rock_ascii}\n")
 elif player_choice == "paper":
-    print(f"You choose {player_choice}\n{paper_ascii}\n")
+    print(f"You chose {player_choice}\n{paper_ascii}\n")
 elif player_choice == "scissor":
-    print(f"You choose {player_choice}\n{scissor_ascii}\n")
-else: print(f"You choose {player_choice} -That's a invalid command\n{invalid_ascii}\n")
+    print(f"You chose {player_choice}\n{scissor_ascii}\n")
+else: print(f"You chose {player_choice} -That's a invalid command\n{invalid_ascii}\n")
 
 if computer_choice == "rock":
-    print(f"The computer choose {computer_choice}\n{rock_ascii}\n")
+    print(f"The computer chose {computer_choice}\n{rock_ascii}\n")
 elif computer_choice == "paper":
-    print(f"The computer choose {computer_choice}\n{paper_ascii}\n")
+    print(f"The computer chose {computer_choice}\n{paper_ascii}\n")
 elif computer_choice == "scissor":
-    print(f"The computer choose {computer_choice}\n{scissor_ascii}\n")
+    print(f"The computer chose {computer_choice}\n{scissor_ascii}\n")
 
 
 # Matching result / Final result
