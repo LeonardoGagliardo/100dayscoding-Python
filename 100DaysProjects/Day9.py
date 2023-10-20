@@ -1,8 +1,7 @@
 #Day 9 Project: Auction
 
 
-
-'''
+print('''
                          ___________
                          \         /
                           )_______(
@@ -11,9 +10,9 @@
                           |       |_| |_             _| |_..-'
                           |_______| '-' `'---------'` '-'
                           )"""""""(
-                         /_________\
+                         /_________\ 
                        .-------------.
-                      /_______________\ '''
+                      /_______________\ \n\n''')
 
 
 
@@ -30,10 +29,7 @@ while add_bidder == "yes":
   add_bidder = input("Are there any other bidders? Type 'yes' or 'no': ").lower()
   
   while not (add_bidder == "yes" or add_bidder == "no"):
-    if not (add_bidder == "no" or add_bidder == "yes"):
-      add_bidder = input("invalid command, please digit 'yes' or 'no'").lower()
-    else: 
-      add_bidder = input("invalid command, please digit 'yes' or 'no'").lower()
+    add_bidder = input("invalid command, please digit 'yes' or 'no'").lower()
     
 #Final result
 winner_bid = 0
@@ -44,7 +40,7 @@ for bidder_key in bidder:
     winner_bid = bidder_bid
     winner = bidder_key
  
-print(f"The winner is {winner} with the bet of ${winner_bid}")
+print(f"The winner is {winner} with a bid of ${winner_bid}")
     
       
       
