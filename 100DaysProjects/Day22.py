@@ -24,7 +24,7 @@ class Paddle(Turtle):
         self.shape("square")
         self.penup()
         self.seth(90)
-        self.shapesize(0.7, 3.5)
+        self.shapesize(0.7, 4)
         self.speed(0)
         self.goto(x_position, 0)
         self.speed(3)
@@ -34,12 +34,12 @@ class Paddle(Turtle):
         def up():
             if self.ycor() < SCREEN_HEIGHT_Y - 60:
                 self.seth(90)
-                self.forward(35)
+                self.forward(50)
 
         def down():
             if self.ycor() > (SCREEN_HEIGHT_Y * -1) + 60:
                 self.seth(270)
-                self.forward(35)
+                self.forward(50)
         
         screen.onkey(up, Key_up)
         screen.onkey(down, Key_down)
@@ -58,8 +58,11 @@ class Ball(Turtle):
         elif first_to_play == 2:
             self.seth(random.choice([random.randint(0, 45), random.randint(315, 360)]))
 
-    def change_direction(self):
-        self.seth(self.heading() + random.randint(135, 225))
+    def change_direction(self, player_colision):
+        if player_colision == 2:
+            self.seth(random.randint(135, 225))
+        elif player_colision == 1:
+            self.seth(random.choice([random.randint(0, 45), random.randint(315, 360)]))
 
     def reset_ball(self):
         self.goto(0, 0)
@@ -96,6 +99,7 @@ paddle_2 = Paddle(SCREEN_WIDTH_X - 25)
 player_turn = random.randint(1, 2)
 
 ball = Ball(first_to_play = player_turn)
+ball_speed = 5
 
 score_to_win = 3
 score_paddle_1 = Score(-80)
@@ -139,27 +143,32 @@ screen.listen()
 while game_on:
     screen.update()
     time.sleep(0.01)
-    ball.forward(5)
+    ball.forward(ball_speed)
 
 
     # Colision Ball with players
-    if ball.distance(paddle_1) < 35 or ball.distance(paddle_2) < 35:
-        ball.change_direction()
-
+    if ball.distance(paddle_1) < 40: 
+        ball.change_direction(1)
+        ball_speed += 0.1
+    elif ball.distance(paddle_2) < 40:
+        ball.change_direction(2)
+        ball_speed += 0.1
 
     # Colision Ball with Wall
 
     if ball.heading() > 90 and ball.heading() < 270:
-        if ball.ycor() >= SCREEN_HEIGHT_Y - 4:
-            ball.seth(ball.heading() + 90) 
-        elif ball.ycor() <= (SCREEN_HEIGHT_Y * -1) + 4:
-            ball.seth(ball.heading() - 90) 
+        if ball.ycor() >= SCREEN_HEIGHT_Y - 5:
+            ball.seth(ball.heading() + 80) 
+        elif ball.ycor() <= (SCREEN_HEIGHT_Y * -1) + 5:
+            ball.seth(ball.heading() - 80) 
         
     else:
-        if ball.ycor() >= SCREEN_HEIGHT_Y - 4:
-            ball.seth(ball.heading() - 90) 
-        elif ball.ycor() <= (SCREEN_HEIGHT_Y * -1) + 4:
-            ball.seth(ball.heading() + 90) 
+        if ball.ycor() >= SCREEN_HEIGHT_Y - 5:
+            ball.seth(ball.heading() - 80) 
+        elif ball.ycor() <= (SCREEN_HEIGHT_Y * -1) + 5:
+            ball.seth(ball.heading() + 80) 
+
+
 
     # Ball reset
     if ball.xcor() > SCREEN_WIDTH_X + 10 or ball.xcor() < (SCREEN_WIDTH_X * -1) - 10:
@@ -171,9 +180,9 @@ while game_on:
         else:
             player_turn = 2
             score_paddle_2.making_point(2)
-
-        ball.clear()
+        ball.hideturtle()
         ball = Ball(player_turn)
+        ball_speed = 5
         screen.update()
         time.sleep(1)
 
@@ -184,11 +193,5 @@ while game_on:
 
 screen.exitonclick()
 
-
-# Debungging
-# Bola ao colidir na parede em um certo angulo, fica em um loop infinito (bate duas vezes) 
-# Preciso deletar as bolas que saem do campo
-# Winner Warning is reverse
-# Colocar na frente da pontuação o jogador
 
 
