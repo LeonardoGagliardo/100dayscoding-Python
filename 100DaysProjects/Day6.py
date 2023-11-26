@@ -1,6 +1,6 @@
 #Day 6 Project: Escaping the Maze
 
-#This project was actually a challange from reeborg.ca:
+#This project was a challange from reeborg.ca:
 
 #https://reeborg.ca/reeborg.html?lang=en&mode=python&menu=worlds%2Fmenus%2Freeborg_intro_en.json&name=Maze&url=worlds%2Ftutorial_en%2Fmaze1.json
 
